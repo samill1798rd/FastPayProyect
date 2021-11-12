@@ -1,25 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\source\\repos\\PagoServicioApp\\Web\\Web.csproj": {}
+    "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\source\\repos\\PagoServicioApp\\Web\\Web.csproj": {
+    "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\source\\repos\\PagoServicioApp\\Web\\Web.csproj",
+        "projectUniqueName": "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "C:\\Users\\LENOVO\\source\\repos\\PagoServicioApp\\Web\\Web.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\source\\repos\\PagoServicioApp\\Web\\obj\\",
+        "projectPath": "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\gi.rivas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\gi.rivas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,7 +29,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,7 +40,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -53,12 +50,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.13, 3.1.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -67,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

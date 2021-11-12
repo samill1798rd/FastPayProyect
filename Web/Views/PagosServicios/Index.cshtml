@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Realizar Pagos";
+    ViewData["Modulo"] = "Pagos de Servicios";
+}
+
+
+<div class="card">
+    <div class="card-header border-0">
+        <h2 class="card-title">Seleccione el servicio a pagar</h2>
+    </div>
+
+    <div class="card-body">
+
+        <div class="container">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col single-service" style="border:1px solid gray;">
+                        <div style="text-align: center;">
+                            <h3>Pagos Luz</h3>
+                            <a href="m1Lista.php">
+                                <img src="~/assets/img/mainMenu/logoLuz.jpg" width="150px" height="150px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col single-service" style="border:1px solid gray;">
+                        <div style="text-align: center;">
+                            <h3>Pagos Agua</h3>
+                            <a href="modulo1.php">
+                                <img src="~/assets/img/mainMenu/logoAgua.jpg" width="200px" height="150px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col single-service" style="border:1px solid gray;">
+                        <div style="text-align: center;">
+                            <h3>Pagos Internet</h3>
+                            <a href="m1newuser.php">
+                                <img src="~/assets/img/mainMenu/pagoInternet.jpg" width="150px" height="150px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col single-service" style="border:1px solid gray;">
+                        <div style="text-align: center;">
+                            <h3>Otros Pagos</h3>
+                            <a href="m1Panel.php">
+                                <img src="~/assets/img/mainMenu/otrosPagosLogo.png" width="100px" height="100px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col single-service" style="border:1px solid gray;" id="cable">
+                        <div style="text-align: center;">
+                            <h3>Pagos Cable</h3>
+                            <a href="padron.php">
+                                <img src="~/assets/img/mainMenu/cableLogo.png" width="100px" height="100px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col single-service" style="border:1px solid gray;">
+                        <div style="text-align: center;">
+                            <h3>Pagos Telefonia</h3>
+                            <a href="m1reportes.php">
+                                <img src="~/assets/img/mainMenu/telefoniaLogo.jpg" width="150px" height="150px" alt="" />
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card-footer py-4">
+        <a href="@Url.Action("Index","Home")" class="btn btn-success float-right">Inicio</a>
+    </div>
+</div>
