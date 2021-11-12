@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Realizar Pagos";
     ViewData["Modulo"] = "Pagos de Servicios";
+    ViewData["IdRol"] = "1";
 }
 
 
@@ -11,70 +12,93 @@
 
     <div class="card-body">
 
+
         <div class="container">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col single-service" style="border:1px solid gray;">
-                        <div style="text-align: center;">
-                            <h3>Pagos Luz</h3>
-                            <a href="m1Lista.php">
-                                <img src="~/assets/img/mainMenu/logoLuz.jpg" width="150px" height="150px" alt="" />
-                            </a>
-                        </div>
+            <div class="row">
+                <div class="col single-service padding-div services" style="border:1px solid gray;">
+                    <div style="text-align: center;">
+                        <h3>Pagos Luz</h3>
+                        <a href="m1Lista.php">
+                            <img src="~/assets/img/mainMenu/logoLuz.jpg" width="150px" height="150px" alt="" />
+                        </a>
                     </div>
+                </div>
 
-                    <div class="col single-service" style="border:1px solid gray;">
-                        <div style="text-align: center;">
-                            <h3>Pagos Agua</h3>
-                            <a href="modulo1.php">
-                                <img src="~/assets/img/mainMenu/logoAgua.jpg" width="200px" height="150px" alt="" />
-                            </a>
-                        </div>
+                <div class="col single-service padding-div services" style="border:1px solid gray;">
+                    <div style="text-align: center;">
+                        <h3>Pagos Agua</h3>
+                        <a href="modulo1.php">
+                            <img src="~/assets/img/mainMenu/logoAgua.jpg" width="200px" height="150px" alt="" />
+                        </a>
                     </div>
+                </div>
 
 
-                    <div class="col single-service" style="border:1px solid gray;">
-                        <div style="text-align: center;">
-                            <h3>Pagos Internet</h3>
-                            <a href="m1newuser.php">
-                                <img src="~/assets/img/mainMenu/pagoInternet.jpg" width="150px" height="150px" alt="" />
-                            </a>
-                        </div>
+                <div class="col single-service padding-div services" style="border:1px solid gray;">
+                    <div style="text-align: center;">
+                        <h3>Pagos Internet</h3>
+                        <a href="m1newuser.php">
+                            <img src="~/assets/img/mainMenu/pagoInternet.jpg" width="150px" height="150px" alt="" />
+                        </a>
                     </div>
-
                 </div>
 
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col single-service" style="border:1px solid gray;">
-                        <div style="text-align: center;">
-                            <h3>Otros Pagos</h3>
-                            <a href="m1Panel.php">
-                                <img src="~/assets/img/mainMenu/otrosPagosLogo.png" width="100px" height="100px" alt="" />
-                            </a>
-                        </div>
-                    </div>
 
-                    <div class="col single-service" style="border:1px solid gray;" id="cable">
-                        <div style="text-align: center;">
-                            <h3>Pagos Cable</h3>
-                            <a href="padron.php">
-                                <img src="~/assets/img/mainMenu/cableLogo.png" width="100px" height="100px" alt="" />
-                            </a>
-                        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col single-service services" style="border:1px solid gray;">
+                    <div style="text-align: center;">
+                        <h3>Otros Pagos</h3>
+                        <a href="m1Panel.php">
+                            <img src="~/assets/img/mainMenu/otrosPagosLogo.png" width="100px" height="100px" alt="" />
+                        </a>
                     </div>
+                </div>
+
+                <div class="col single-service services" style="border:1px solid gray;" id="cable">
+                    <div style="text-align: center;">
+                        <h3>Pagos Cable</h3>
+                        <a href="padron.php">
+                            <img src="~/assets/img/mainMenu/cableLogo.png" width="100px" height="100px" alt="" />
+                        </a>
+                    </div>
+                </div>
 
 
-                    <div class="col single-service" style="border:1px solid gray;">
-                        <div style="text-align: center;">
-                            <h3>Pagos Telefonia</h3>
-                            <a href="m1reportes.php">
-                                <img src="~/assets/img/mainMenu/telefoniaLogo.jpg" width="150px" height="150px" alt="" />
-                            </a>
-                        </div>
+                <div class="col single-service services" data-id="2" style="border:1px solid gray;">
+                    <div style="text-align: center;">
+                        <h3>Pagos Telefonia</h3>
+                        <a href="m1reportes.php">
+                            <img src="~/assets/img/mainMenu/telefoniaLogo.jpg" width="150px" height="150px" alt="" />
+                        </a>
                     </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal" id="VentanaModal" tabindex="-1" role="dialog">
+        <div class="largeWidth" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                @*@Html.HiddenFor(x => x.Id, new { id = "UnidadVal" })*@
+
+                <div class="modal-body">
+
+                    <table id="tListaDeServicios" style="width:100%" class="datatable table table-striped table-bordered table-hover">
+                    </table>
 
                 </div>
 
@@ -82,8 +106,20 @@
         </div>
     </div>
 
-    
+
+
+
+
     <div class="card-footer py-4">
+
         <a href="@Url.Action("Index","Home")" class="btn btn-success float-right">Inicio</a>
     </div>
 </div>
+
+@*@section scripts
+        {
+
+
+
+
+}*@

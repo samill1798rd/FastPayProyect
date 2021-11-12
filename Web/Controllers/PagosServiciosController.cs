@@ -12,5 +12,12 @@ namespace Web.Controllers
         {
             return View();
         }
+
+        public IActionResult CreatePago(int id)
+        {
+            return View();
+        }
     }
+
+    
 }

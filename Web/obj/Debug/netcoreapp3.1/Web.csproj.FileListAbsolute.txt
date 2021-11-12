@@ -73,3 +73,4 @@ C:\Users\gi.rivas\Documents\FastPayApp\FastPayProyect\Web\obj\Debug\netcoreapp3.
 C:\Users\gi.rivas\Documents\FastPayApp\FastPayProyect\Web\obj\Debug\netcoreapp3.1\Web.genruntimeconfig.cache
 C:\Users\gi.rivas\Documents\FastPayApp\FastPayProyect\Web\obj\Debug\netcoreapp3.1\Web.csproj.CopyComplete
 C:\Users\gi.rivas\Documents\FastPayApp\FastPayProyect\Web\obj\Debug\netcoreapp3.1\Razor\Views\PagosServicios\Index.cshtml.g.cs
+C:\Users\gi.rivas\Documents\FastPayApp\FastPayProyect\Web\obj\Debug\netcoreapp3.1\Razor\Views\PagosServicios\CreatePago.cshtml.g.cs

@@ -71,6 +71,10 @@ body {
 /*}*/
 
 
+.padding-div {
+    padding-left: 50px;
+    padding-right: 50px;
+}
 .single-service {
     position: relative;
     text-align: center;
