@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\PagoServicioIndex.js" />
+    <Compile Remove="wwwroot\js\App_scripts\**" />
+    <Content Remove="wwwroot\js\App_scripts\**" />
+    <EmbeddedResource Remove="wwwroot\js\App_scripts\**" />
+    <None Remove="wwwroot\js\App_scripts\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\App_scripts\PagosServicios\" />
+    <None Include="wwwroot\js\pagoServicioIndex.js" />
   </ItemGroup>
 
 </Project>

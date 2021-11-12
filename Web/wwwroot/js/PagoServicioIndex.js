@@ -1,5 +1,45 @@
 ﻿
-
 $(document).ready(function () {
+    debugger
     $('#tListaDeServicios').DataTable();
 });
+
+
+$(document).on('click', '.services', function (data) {
+    debugger
+    let codigousuario = $(this).attr('data-id');
+
+
+    GetServiciosById(codigousuario)
+
+    
+
+})
+
+function GetServiciosById(codigo) {
+
+    debugger
+
+
+    $.ajax({
+        url: "/PagosServicios/GetServicoById",
+        type: "POST",
+        data: { id: codigo },
+        //dataType: "json",
+        success: function (objResult) {
+            debugger
+            //MensajeQuitarBloqueo();
+            $("#ListaServicios").html(objResult);
+            //$.validator.unobtrusive.parse("#frmRegistrarCarta");
+            //$("#datosConsulta").hide('slow');
+            //$("#dvHogarResultado").show('slow');
+            $('#VentanaModal').modal('toggle');
+
+        }, error: function (objResult) {
+            debugger
+            //$codigoCentros.append(optionDefaults);
+
+        }
+
+    });
+}

@@ -17,8 +17,10 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/vendor/nucleo/css/nucleo.css" type="text/css">
     <link rel="stylesheet" href="~/assets/vendor/fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link href="~/assets/vendor/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- Argon CSS -->
     <link rel="stylesheet" href="~/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" type="text/css">
 </head>
 
 <body>
@@ -262,8 +264,11 @@
     <script src="~/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
     <!-- Argon JS -->
     <script src="~/assets/js/argon.js?v=1.2.0"></script>
+    <script src="~/assets/js/argon.js?v=1.2.0"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

@@ -10,6 +10,7 @@ namespace Web.ViewModel
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Cuenta { get; set; }
+        public int ServicoGrupoId { get; set; }
         public bool IsActive { get; set; }
      
     }
