@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "V+ZqHqDMbo1Qi2Zx1qJkO6czNvkbvBgcLTG6o2zTEQ5gHFPaloDSg6K/CDENrM6hlfvXxB00Ld751TDBNmVGWw==",
+  "dgSpecHash": "hUgBqD08wFbxaXBFyZy8YBYOPjVKeF3BKF7WXpRXvx6CBQ/6p/TPda4jyFF//Tv/D7/nam2Fa6GJ/n4FvdJJTQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gi.rivas\\Documents\\FastPayApp\\FastPayProyect\\Web\\Web.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\fastpay\\FastPayProyect\\Web\\Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
+  ],
   "logs": []
 }
