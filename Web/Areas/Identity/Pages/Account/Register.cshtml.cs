@@ -93,6 +93,11 @@ namespace Web.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/PagosServicios");
+            }
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
