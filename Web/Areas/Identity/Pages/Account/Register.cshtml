@@ -4,7 +4,122 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="col-lg-6 col-md-8">
+    <div class="card bg-secondary border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+                <h3>Registrar</h3>
+            </div>
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input asp-for="Input.Nombre" class="form-control" placeholder="Ingrese el Nombre" type="text" />
+                        @*<br />
+                        <span asp-validation-for="Input.Nombre" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input asp-for="Input.Apellido" class="form-control" placeholder="Ingrese el Apellido" type="text" />
+                        @*<br />
+                        <span asp-validation-for="Input.Apellido" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input asp-for="Input.Cedula" class="form-control" placeholder="Ingrese la Cedula" type="text" />
+                        @*<br />
+                        <span asp-validation-for="Input.Cedula" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input asp-for="Input.NoCuenta" class="form-control" placeholder="Ingrese el Numero de Cuenta" type="text" />
+                        @*<br />
+                        <span asp-validation-for="Input.NoCuenta" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <select asp-for="Input.Sexo" class="input-group input-group-merge input-group-alternative mb-3">
+                        <option selected>-- Seleccione el Sexo--</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                    @*<br />
+                    <span asp-validation-for="Input.Sexo" class="text-danger"></span>*@
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input asp-for="Input.FechaNacimiento" class="form-control" type="date" />
+                    </div>
+                    @*<br />
+                    <span asp-validation-for="Input.FechaNacimiento" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <input asp-for="Input.Email" class="form-control" placeholder="Ingrese el Correo Electronico" type="email" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input asp-for="Input.Password" class="form-control" placeholder="Ingrese la contraseña" type="password" />
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirme la contraseña" type="password" />
+
+                    </div>
+                </div>
+                <div class="text-muted font-italic"><small>La Contraseña de ser: <span class="text-success font-weight-700">Fuerte</span></small></div>
+                <div class="row my-4">
+                    <div class="col-12">
+                        <div class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                            <label class="custom-control-label" for="customCheckRegister">
+                                <span class="text-muted">Esto de acuerdo con la <a href="#!">Politica de Privacidad</a></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success mt-4">Crear Cuenta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*<h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -60,7 +175,7 @@
             }
         </section>
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

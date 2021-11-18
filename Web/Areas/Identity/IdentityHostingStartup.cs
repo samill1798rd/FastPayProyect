@@ -20,7 +20,13 @@ namespace Web.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
-                services.AddDefaultIdentity<AplicationUserWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<AplicationUserWebUser>(options => {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+
+                })
                     .AddEntityFrameworkStores<AuthDbContext>();
             });
         }

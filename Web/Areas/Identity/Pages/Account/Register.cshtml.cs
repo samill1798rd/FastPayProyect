@@ -47,6 +47,34 @@ namespace Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nombre")]
+            public string Nombre { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Apellido")]
+            public string Apellido { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Cedula")]
+            public string Cedula { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Numero de Cuenta")]
+            public string NoCuenta { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Sexo")]
+            public string Sexo { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Fecha de Nacimiento")]
+            public DateTime? FechaNacimiento { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,7 +103,21 @@ namespace Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AplicationUserWebUser { UserName = Input.Email, Email = Input.Email };
+                var user = new AplicationUserWebUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    Nombre = Input.Nombre,
+                    Apellido = Input.Apellido,
+                    Cedula = Input.Cedula,
+                    NoCuenta = Input.NoCuenta,
+                    Sexo = Input.Sexo,
+                    FechaNacimiento = Input.FechaNacimiento
+
+
+                };
+
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -98,6 +140,7 @@ namespace Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        returnUrl = "/identity/account/login";
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

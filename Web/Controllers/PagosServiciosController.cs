@@ -4,12 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Web.ViewModel;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class PagosServiciosController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+        public PagosServiciosController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
         public IActionResult Index()
         {
             return View();
