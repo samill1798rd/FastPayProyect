@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.ApiFiHogar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Web
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IApiFiHogarServices, ApiFiHogarServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

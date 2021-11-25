@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Services.ApiFiHogar;
 using Web.ViewModel;
 
 namespace Web.Controllers
@@ -13,12 +14,16 @@ namespace Web.Controllers
     public class PagosServiciosController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public PagosServiciosController(ILogger<HomeController> logger)
+        private readonly IApiFiHogarServices _ApiFiHogarServices;
+        public PagosServiciosController(ILogger<HomeController> logger, IApiFiHogarServices apiFiHogarServices)
         {
             _logger = logger;
+            _ApiFiHogarServices = apiFiHogarServices;
         }
         public IActionResult Index()
         {
+           _ApiFiHogarServices.GetSecondToken("fast_1","fast_1");
+            var test = _ApiFiHogarServices.GetAccountInformation();
             return View();
         }
 
