@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.ApiFiHogar
@@ -29,14 +27,12 @@ namespace Services.ApiFiHogar
             request.AddParameter("grant_type", "client_credentials" +
                 "");
             IRestResponse response = client.Execute(request);
-            var modelResult = JsonConvert.DeserializeObject<TokenModel>(response.Content);
 
-            FirstToken = modelResult.access_token;
+            FirstToken = JsonConvert.DeserializeObject<TokenModel>(response.Content).access_token;
         }
 
         public void GetSecondToken(string username, string password)
         {
-
             var client = new RestClient("https://api.uat.4wrd.tech:8243/authorize/2.0/token?provider=AB4WRD");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
@@ -47,9 +43,7 @@ namespace Services.ApiFiHogar
             request.AddParameter("password", "fast_1");
             IRestResponse response = client.Execute(request);
 
-
-            var modelResult = JsonConvert.DeserializeObject<SecondAccessToken>(response.Content);
-            SecondToken = modelResult.access_token;
+            SecondToken = JsonConvert.DeserializeObject<SecondAccessToken>(response.Content).access_token;
         }
 
 
@@ -60,15 +54,10 @@ namespace Services.ApiFiHogar
             var request = new RestRequest(Method.GET);
             request.AddHeader("token-id", $"{SecondToken}");
             request.AddHeader("Authorization", $"Bearer {FirstToken}");
-            //request.AddHeader("", "");
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
-            var modelResult = JsonConvert.DeserializeObject<AccountInformation>(response.Content);
-
-            return modelResult;
-
-
+            return JsonConvert.DeserializeObject<AccountInformation>(response.Content);
         }
     }
 }

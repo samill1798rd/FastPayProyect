@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.ApiFiHogar;
+using System.Collections.Generic;
 using Web.ViewModel;
 
 namespace Web.Controllers
@@ -23,7 +20,9 @@ namespace Web.Controllers
         public IActionResult Index()
         {
            _ApiFiHogarServices.GetSecondToken("fast_1","fast_1");
+
             var test = _ApiFiHogarServices.GetAccountInformation();
+
             return View();
         }
 
