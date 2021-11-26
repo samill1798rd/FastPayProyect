@@ -11,6 +11,7 @@ namespace Services.ApiFiHogar
     {
         private string FirstToken;
         private string SecondToken;
+        //private string CurrentAccount;
         protected const string defaultToken = "dzBMbkVNOUpYeWhNYmlBMEg4Nk9lM3FwVjVzYTpyRlRqanFUdkxOY25ZbTltSndHX0FNbVp6b2dh";
 
         public ApiFiHogarServices()
@@ -40,8 +41,8 @@ namespace Services.ApiFiHogar
             request.AddHeader("Authorization", $"Bearer {FirstToken}");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddParameter("grant_type", "password");
-            request.AddParameter("username", "fast_1");
-            request.AddParameter("password", "fast_1");
+            request.AddParameter("username", $"{username}");
+            request.AddParameter("password", $"{password}");
             IRestResponse response = client.Execute(request);
 
             SecondToken = JsonConvert.DeserializeObject<SecondAccessToken>(response.Content).access_token;
@@ -75,17 +76,48 @@ namespace Services.ApiFiHogar
             return JsonConvert.DeserializeObject<Transaction>(response.Content);
         }
 
-        //Task<System.Transactions.Transaction> IApiFiHogarServices.GetAccountTransationsDetail(string accountNumber)
-        //{
-        //    var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/86376489/transactions?provider=AB4WRD");
-        //    client.Timeout = -1;
-        //    var request = new RestRequest(Method.GET);
-        //    request.AddHeader("token-id", $"{SecondToken}");
-        //    request.AddHeader("Authorization", $"Bearer {FirstToken}");
-        //    IRestResponse response = client.Execute(request);
+        public async Task<Header> CreateAccountTransfer(string currentAccount)
+        {
+            var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-transfers/api/2.0/transfers?provider=AB4WRD");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Authorization", $"Bearer {FirstToken}");
+            request.AddHeader("token-id", $"{SecondToken}");
+            var body = GetBodyPart(currentAccount,"500");
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
 
+            return JsonConvert.DeserializeObject<Header>(response.Content);
+        }
 
-        //    return JsonConvert.DeserializeObject<Transaction>(response.Content);
-        //}
+        public string GetBodyPart(string currentAccount, string monto)
+        {
+            return @"{" + "\n" +
+            @"    ""Data"": {" + "\n" +
+            @"        ""Initiation"": {" + "\n" +
+            @"            ""InstructionType"": ""Internal""," + "\n" +
+            @"            ""InstructionIdentification"": ""df96ac00-5410-4136-8fff-3ab8ec9f1fe3""," + "\n" +
+            @"            ""EndToEndIdentification"": ""e1c8db3f-d8cd-4c26-b0a2-e5ef153a8653""," + "\n" +
+            @"            ""InstructedAmount"": {" + "\n" +
+            @"                ""Amount"":"+monto +"," + "\n" +
+            @"                ""Currency"": ""USD""" + "\n" +
+            @"            }," + "\n" +
+            @"            ""DebtorAccount"": {" + "\n" +
+            @"                ""SchemeName"": ""4WRD.AccountNumber""," + "\n" +
+            @"                ""Identification"":" + currentAccount + "" + "\n" +
+            @"            }," + "\n" +
+            @"            ""CreditorAccount"": {" + "\n" +
+            @"                ""SchemeName"": ""4WRD.AccountNumber""," + "\n" +
+            @"                ""Identification"": 86376489," + "\n" +
+            @"                ""Name"": ""Fast Pay""" + "\n" +
+            @"            }" + "\n" +
+            @"        }" + "\n" +
+            @"    }," + "\n" +
+            @"    ""Risk"": {" + "\n" +
+            @"        ""TransferContextCode"": ""Internal Transfer""" + "\n" +
+            @"    }" + "\n" +
+            @"}";
+        }
     }
 }

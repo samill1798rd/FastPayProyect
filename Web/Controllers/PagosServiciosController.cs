@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.ApiFiHogar;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Web.ViewModel;
 
 namespace Web.Controllers
@@ -12,18 +14,27 @@ namespace Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IApiFiHogarServices _ApiFiHogarServices;
-        public PagosServiciosController(ILogger<HomeController> logger, IApiFiHogarServices apiFiHogarServices)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private string CurrentAccount;
+        public PagosServiciosController(ILogger<HomeController> logger, IApiFiHogarServices apiFiHogarServices, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _ApiFiHogarServices = apiFiHogarServices;
+            _httpContextAccessor = httpContextAccessor;
+
+            var user = _httpContextAccessor.HttpContext.User.Identity.Name;
+
+            SetCurrentAccount();
+
+            _ApiFiHogarServices.GetSecondToken("matilde_1", "matilde_1");
         }
         public IActionResult Index()
         {
-           _ApiFiHogarServices.GetSecondToken("fast_1","fast_1");
+            
 
-            var test = _ApiFiHogarServices.GetAccountInformation();
 
             var test1 = _ApiFiHogarServices.GetAccountTransationsDetail("0000");
+            _ApiFiHogarServices.CreateAccountTransfer(CurrentAccount);
 
 
             return View();
@@ -64,6 +75,12 @@ namespace Web.Controllers
             datosVm.Add(new ServicosDto { Id = 5, Cuenta = "00000", IsActive = true, Nombre = "Test 5", ServicoGrupoId = 5 });
 
             return datosVm;
+        }
+
+        private void SetCurrentAccount()
+        {
+            var accountObj = _ApiFiHogarServices.GetAccountInformation();
+            CurrentAccount = accountObj.Result.Data.Account[0].account[0].Identification;
         }
     }
 
