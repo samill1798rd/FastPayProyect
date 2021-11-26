@@ -1,9 +1,9 @@
 D:\fastpay\FastPayProyect\Model\bin\Debug\netstandard2.0\Model.deps.json
 D:\fastpay\FastPayProyect\Model\bin\Debug\netstandard2.0\Model.dll
 D:\fastpay\FastPayProyect\Model\bin\Debug\netstandard2.0\Model.pdb
+D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache
 D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.AssemblyInfoInputs.cache
 D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.AssemblyInfo.cs
 D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.csproj.CoreCompileInputs.cache
 D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.dll
 D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.pdb
-D:\fastpay\FastPayProyect\Model\obj\Debug\netstandard2.0\Model.csprojAssemblyReference.cache

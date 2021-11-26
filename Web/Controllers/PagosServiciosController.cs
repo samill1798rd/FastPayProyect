@@ -23,6 +23,9 @@ namespace Web.Controllers
 
             var test = _ApiFiHogarServices.GetAccountInformation();
 
+            var test1 = _ApiFiHogarServices.GetAccountTransationsDetail("0000");
+
+
             return View();
         }
 

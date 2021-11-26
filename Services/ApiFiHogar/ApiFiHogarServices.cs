@@ -1,4 +1,5 @@
 ﻿using Model.ApiFiHogarEntity;
+using Model.ApiFiHogarEntity.Transaction;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -59,5 +60,32 @@ namespace Services.ApiFiHogar
 
             return JsonConvert.DeserializeObject<AccountInformation>(response.Content);
         }
+
+        public async Task<Transaction> GetAccountTransationsDetail(string accountNumber)
+        {
+
+            var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/86376489/transactions?provider=AB4WRD");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("token-id", $"{SecondToken}");
+            request.AddHeader("Authorization", $"Bearer {FirstToken}");
+            IRestResponse response = client.Execute(request);
+
+          
+            return JsonConvert.DeserializeObject<Transaction>(response.Content);
+        }
+
+        //Task<System.Transactions.Transaction> IApiFiHogarServices.GetAccountTransationsDetail(string accountNumber)
+        //{
+        //    var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/86376489/transactions?provider=AB4WRD");
+        //    client.Timeout = -1;
+        //    var request = new RestRequest(Method.GET);
+        //    request.AddHeader("token-id", $"{SecondToken}");
+        //    request.AddHeader("Authorization", $"Bearer {FirstToken}");
+        //    IRestResponse response = client.Execute(request);
+
+
+        //    return JsonConvert.DeserializeObject<Transaction>(response.Content);
+        //}
     }
 }
