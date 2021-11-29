@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DAhVdZpmESOFNXmyL1hryx8IxMLAf3yp45UJWVNX73fkH/6lBgX0+oXZPnpgZCeOr49298gEuHTItcwr5fp3Gw==",
+  "dgSpecHash": "I2t/wb3WgTH7eA8SeVYIcA7NGSsI4D2u4+GHwuiYszsV3FNQpr2WyaFuXQeravtLQmrqHwTsCzhk05eV8r4mKA==",
   "success": true,
   "projectFilePath": "D:\\fastpay\\FastPayProyect\\Web\\Web.csproj",
   "expectedPackageFiles": [
@@ -27,7 +27,9 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.21\\microsoft.entityframeworkcore.analyzers.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.21\\microsoft.entityframeworkcore.design.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.21\\microsoft.entityframeworkcore.relational.3.1.21.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.6\\microsoft.entityframeworkcore.relational.design.1.1.6.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.21\\microsoft.entityframeworkcore.sqlserver.3.1.21.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver.design\\1.1.6\\microsoft.entityframeworkcore.sqlserver.design.1.1.6.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.21\\microsoft.entityframeworkcore.tools.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.21\\microsoft.extensions.caching.abstractions.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.21\\microsoft.extensions.caching.memory.3.1.21.nupkg.sha512",

@@ -1,15 +1,12 @@
+using DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.ApiFiHogar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Web
 {
@@ -27,6 +24,11 @@ namespace Web
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<PayFastAppDBContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AuthDbContextConnection"))
+            );
+
             services.AddScoped<IApiFiHogarServices, ApiFiHogarServices>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
