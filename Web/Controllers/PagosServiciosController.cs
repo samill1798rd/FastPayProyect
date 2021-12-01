@@ -62,45 +62,62 @@ namespace Web.Controllers
         {
             IniciarlizarOperacionesApi();
 
-            var obj =_ApiFiHogarServices.CreateAccountTransfer(CurrentAccount,dto.Monto);
+            var obj = _ApiFiHogarServices.CreateAccountTransfer(CurrentAccount, dto.Monto);
 
-            var model = _mapper.Map<TblHistoricoTrasaciones>(dto);
+            var model = _mapper.Map<Trasaciones>(dto);
+
+            _procesoLocalServices.SaveTransaciones(SetOperactionBussiness(model,dto));
 
 
             return RedirectToAction("Success", dto);
         }
 
+        private Trasaciones SetOperactionBussiness(Trasaciones model, PagoServicoDto dto)
+        {
+          
+            model.Correo = Correo;
+            model.ServicioName = dto.IdServicioList;
+            model.ServicioTipo = dto.ServicioHeaderId;
       
+            return model;
+        }
+
+
         public IActionResult Success(PagoServicoDto dto)
         {
-        
+
             return View(dto);
         }
 
 
         public IActionResult HistorialTransaciones()
         {
-            IniciarlizarOperacionesApi();
+            var obj = _procesoLocalServices.GetTransationByCorreo(Correo); 
 
-            var obj = _ApiFiHogarServices.GetAccountTransationsDetail(CurrentAccount);
-
-            var objTransation = obj.Result.Data.Transaction;
-
-            var model = _mapper.Map<IEnumerable<TransationDto>>(objTransation);
-
-            return View(model);
+            return View(SetMappingTransaciones(obj));
         }
-
-
-        private TblHistoricoTrasaciones SetOperactionBussiness(TblHistoricoTrasaciones model, PagoServicoDto dto)
+        
+        private List<TransationDto> SetMappingTransaciones(IEnumerable<Trasaciones> model)
         {
-            model.PorcientoPagina = "3%";
-            model.CedulaUser = UserObj.Cedula;
-            model.Total = model.Monto;
-            model.ServicioListId = dto.IdServicioList;
+            
+            var listTransactionDto = new List<TransationDto>();
 
-            return model;
+            foreach (var item in model)
+            {
+                var servicioObj = _procesoLocalServices.GetServicioById(item.ServicioName);
+                var transaction = new TransationDto();
+                transaction.ServicioName = servicioObj.Name;
+                transaction.ServicioTipo = servicioObj.ServicioHeader.Name;
+                transaction.Monto = item.Monto;
+                transaction.ReferenciaPago = item.ReferenciaPago;
+
+                listTransactionDto.Add(transaction);
+            }
+
+            return listTransactionDto;
         }
+
+
 
         [AllowAnonymous]
         public PartialViewResult GetServicoById(int id)
@@ -126,7 +143,7 @@ namespace Web.Controllers
         }
 
 
-        private string  GetRandomNumber()
+        private string GetRandomNumber()
         {
             return new Random().Next(500, 1000).ToString();
         }
@@ -136,7 +153,7 @@ namespace Web.Controllers
         {
             GetUserToLogginInAccountApi();
             SetCurrentAccount();
-            
+
         }
 
         private void SetCurrentAccount()
@@ -147,7 +164,7 @@ namespace Web.Controllers
 
         private void GetUserToLogginInAccountApi()
         {
-             UserObj = _procesoLocalServices.GetUserByCorreo(Correo);
+            UserObj = _procesoLocalServices.GetUserByCorreo(Correo);
             _ApiFiHogarServices.GetSecondToken(UserObj.NoCuenta, UserObj.NoCuenta);
         }
     }

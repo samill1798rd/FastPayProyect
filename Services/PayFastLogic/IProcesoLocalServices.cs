@@ -8,9 +8,9 @@ namespace Services.PayFastLogic
     {
         AspNetUsers GetUserByCorreo(string correo);
         IEnumerable<TblServicioList> GetServicioListByModuloId(int id);
-        TblServicioList GetServicioById(int id);
-
-        OperationResult<TblHistoricoTrasaciones> SaveHistoricoTransaciones(TblHistoricoTrasaciones model);
+        TblServicioList GetServicioById(int? id);
+        OperationResult<Trasaciones> SaveTransaciones(Trasaciones Trasaciones);
+        IEnumerable<Trasaciones> GetTransationByCorreo(string correo);
 
     }
 }

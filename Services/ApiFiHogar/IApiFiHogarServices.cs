@@ -9,6 +9,6 @@ namespace Services.ApiFiHogar
         Task GetSecondToken(string username, string password);
         Task<AccountInformation> GetAccountInformation();
         Task<Transaction> GetAccountTransationsDetail(string accountNumber);
-        Task<Header> CreateAccountTransfer(string currentAccount, string monto);
+        Task<object> CreateAccountTransfer(string currentAccount, string monto);
     }
 }

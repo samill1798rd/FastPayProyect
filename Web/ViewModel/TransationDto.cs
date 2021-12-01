@@ -1,18 +1,13 @@
-﻿using Model.ApiFiHogarEntity;
-using System;
-
-namespace Web.ViewModel
+﻿namespace Web.ViewModel
 {
     public class TransationDto
     {
-        public string AccountId { get; set; }
-        public string TransactionId { get; set; }
-        public string TransactionReference { get; set; }
-        public string CreditDebitIndicator { get; set; }
-        public string Status { get; set; }
-        public DateTime BookingDateTime { get; set; }
-        public string TransactionInformation { get; set; }
-        public Amount Amount { get; set; }
-    
+        public int IdHistoricoTransaciones { get; set; }
+        public string Monto { get; set; }
+        public string? ServicioTipo { get; set; }
+        public string? ServicioName { get; set; }
+        public string Correo { get; set; }
+        public string ReferenciaPago { get; set; }
+
     }
 }

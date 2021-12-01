@@ -9,7 +9,7 @@
 
 <div class="card">
     <div class="card-header border-0">
-        <h2 class="card-title">Hola</h2>
+        <h2 class="card-title">Historial de Pagos</h2>
     </div>
 
     <div class="card-body">
@@ -17,18 +17,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nombre del provedor</th>
-                        <th>Pagar</th>
+                        <th>Servicio</th>
+                        <th>Tipo de Servicio</th>
+                        <th>Monto</th>
+                        <th>No. Servicio</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th>@item.Amount.amount</th>
-                            <th>
-                                <a href="@Url.Action("CreatePago","PagosServicios", new { id = @item.AccountId })" id="btnPagar" class="btn btn-success" alt="Pagar"><i class="far fa-money-bill-alt"></i></a>
-                            </th>
+                            <th>@item.ServicioName</th>
+                            <th>@item.ServicioTipo</th>
+                            <th>$@item.Monto</th>
+                            <th>@item.ReferenciaPago</th>
+
                         </tr>
                     }
 

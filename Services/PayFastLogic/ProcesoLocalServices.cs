@@ -1,5 +1,5 @@
 ﻿using Common;
-using DataAccess.DataNew;
+using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Model.FastPayModel;
 using System;
@@ -29,19 +29,24 @@ namespace Services.PayFastLogic
                         .Where(x => x.ServicioHeader.IdServicioHeader == id).ToList();
         }
 
-        public TblServicioList GetServicioById(int id)
+        public IEnumerable<Trasaciones> GetTransationByCorreo(string correo)
+        {
+            return _DBContext.Trasaciones.Where(x => x.Correo == correo).ToList();
+        }
+
+        public TblServicioList GetServicioById(int? id)
         {
             return _DBContext.TblServicioList.Include(x => x.ServicioHeader)
                 .SingleOrDefault(x => x.IdServicioList == id);
         }
 
-        public OperationResult<TblHistoricoTrasaciones> SaveHistoricoTransaciones(TblHistoricoTrasaciones model)
+        public OperationResult<Trasaciones> SaveTransaciones(Trasaciones model)
         {
-            var operation = new OperationResult<TblHistoricoTrasaciones>();
+            var operation = new OperationResult<Trasaciones>();
 
             try
             {
-                _DBContext.TblHistoricoTrasaciones.Add(model);
+                _DBContext.Trasaciones.Add(model);
                 var row = _DBContext.SaveChanges();
                 operation.Success = true;
                 operation.Message.Add("Succes");

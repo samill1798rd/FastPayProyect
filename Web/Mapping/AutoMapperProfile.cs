@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Model.ApiFiHogarEntity.Transaction;
 using Model.FastPayModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Web.ViewModel;
 
 namespace Web.Mapping
@@ -21,9 +17,12 @@ namespace Web.Mapping
             CreateMap<PagoServicoDto, TblHistoricoTrasaciones>();
             CreateMap<TransactionDetail, TransationDto>();
 
+            CreateMap<PagoServicoDto, Trasaciones>();
+            CreateMap<Trasaciones, TransationDto>();
 
 
-            
+
+
         }
     }
 }

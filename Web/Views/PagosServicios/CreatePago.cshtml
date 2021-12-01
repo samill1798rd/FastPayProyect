@@ -15,7 +15,9 @@
     <div class="card-body">
         @using (Html.BeginForm("SavePago", "PagosServicios", FormMethod.Post))
         {
-            Html.HiddenFor(x => x.ServicioHeaderId);
+            @Html.HiddenFor(x => x.ServicioHeaderId)
+    
+            @Html.HiddenFor(x => x.IdServicioList)
 
             switch (Model.ServicioHeaderId)
             {

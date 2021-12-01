@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Model.FastPayModel;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace DataAccess.DataNew
+namespace DataAccess.Data
 {
     public partial class PayFastAppDBContext : DbContext
     {
@@ -31,6 +29,7 @@ namespace DataAccess.DataNew
         public virtual DbSet<TblServicioList> TblServicioList { get; set; }
         public virtual DbSet<TblServicioNameCabezera> TblServicioNameCabezera { get; set; }
         public virtual DbSet<TblServicoList> TblServicoList { get; set; }
+        public virtual DbSet<Trasaciones> Trasaciones { get; set; }
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
@@ -178,9 +177,8 @@ namespace DataAccess.DataNew
                     .IsUnicode(false);
 
                 entity.Property(e => e.ReferenciaPago)
-                  .HasColumnName("ReferenciaPago")
-                  .HasMaxLength(50)
-                  .IsUnicode(false);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ServicioHeaderId).HasColumnName("ServicioHeader_Id");
 
@@ -196,10 +194,10 @@ namespace DataAccess.DataNew
                     .HasForeignKey(d => d.ServicioHeaderId)
                     .HasConstraintName("FK__Tbl_Histo__Servi__47DBAE45");
 
-                //entity.HasOne(d => d.ServicioList)
-                //    .WithMany(p => p.TblHistoricoTrasaciones)
-                //    .HasForeignKey(d => d.ServicioListId)
-                //    .HasConstraintName("FK__Tbl_Histo__servi__48CFD27E");
+                entity.HasOne(d => d.ServicioList)
+                    .WithMany(p => p.TblHistoricoTrasaciones)
+                    .HasForeignKey(d => d.ServicioListId)
+                    .HasConstraintName("FK__Tbl_Histo__servi__48CFD27E");
             });
 
             modelBuilder.Entity<TblServicioList>(entity =>
@@ -256,6 +254,29 @@ namespace DataAccess.DataNew
                     .WithMany(p => p.TblServicoList)
                     .HasForeignKey(d => d.ServicioHeaderId)
                     .HasConstraintName("FK__Tbl_servi__Servi__38996AB5");
+            });
+
+            modelBuilder.Entity<Trasaciones>(entity =>
+            {
+                entity.HasKey(e => e.IdHistoricoTransaciones)
+                    .HasName("PK__Trasacio__226633F790DC1903");
+
+                entity.Property(e => e.IdHistoricoTransaciones).HasColumnName("Id_HistoricoTransaciones");
+
+                entity.Property(e => e.Correo)
+                    .HasColumnName("correo")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Monto)
+                    .HasColumnName("monto")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReferenciaPago)
+                    .HasColumnName("referenciaPago")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

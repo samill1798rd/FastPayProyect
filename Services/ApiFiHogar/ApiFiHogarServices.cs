@@ -77,7 +77,7 @@ namespace Services.ApiFiHogar
             return JsonConvert.DeserializeObject<Transaction>(response.Content);
         }
 
-        public async Task<Header> CreateAccountTransfer(string currentAccount, string monto)
+        public async Task<object> CreateAccountTransfer(string currentAccount, string monto)
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-transfers/api/2.0/transfers?provider=AB4WRD");
             client.Timeout = -1;
@@ -89,7 +89,7 @@ namespace Services.ApiFiHogar
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<Header>(response.Content);
+            return JsonConvert.DeserializeObject<object>(response.Content);
         }
 
         public string GetBodyPart(string currentAccount, string monto)
