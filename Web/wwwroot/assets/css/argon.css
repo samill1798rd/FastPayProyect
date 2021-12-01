@@ -29840,3 +29840,9 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 {
     background: transparent;
 }
+
+.formatBox {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+}

@@ -1,4 +1,4 @@
-﻿@model List<Web.ViewModel.ServicosDto>
+﻿@model IEnumerable<Web.ViewModel.ServicosDto>
 
 <div class="modal fade bd-example-modal-lg" id="VentanaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -16,7 +16,6 @@
                         <thead>
                             <tr>
                                 <th>Nombre del provedor</th>
-                                <th>Cuenta</th>
                                 <th>Pagar</th>
                             </tr>
                         </thead>
@@ -24,10 +23,9 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th>@item.Nombre</th>
-                                    <th>@item.Cuenta</th>
+                                    <th>@item.Name</th>
                                     <th>
-                                        <a href="@Url.Action("CreatePago","PagosServicios", new { id = @item.Id })" id="btnPagar" class="btn btn-success" alt="Pagar"><i class="far fa-money-bill-alt"></i></a>
+                                        <a href="@Url.Action("CreatePago","PagosServicios", new { id = @item.IdServicioList })" id="btnPagar" class="btn btn-success" alt="Pagar"><i class="far fa-money-bill-alt"></i></a>
                                     </th>
                                 </tr>
                             }

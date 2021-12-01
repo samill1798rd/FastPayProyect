@@ -1,4 +1,5 @@
-using DataAccess.Data;
+using AutoMapper;
+using DataAccess.DataNew;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.ApiFiHogar;
+using Services.PayFastLogic;
+using System;
 
 namespace Web
 {
@@ -22,15 +25,18 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+         
             services.AddDbContext<PayFastAppDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AuthDbContextConnection"))
             );
 
             services.AddScoped<IApiFiHogarServices, ApiFiHogarServices>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IProcesoLocalServices, ProcesoLocalServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

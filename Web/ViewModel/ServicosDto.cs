@@ -7,11 +7,9 @@ namespace Web.ViewModel
 {
     public class ServicosDto
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Cuenta { get; set; }
-        public int ServicoGrupoId { get; set; }
-        public bool IsActive { get; set; }
-     
+        public int IdServicioList { get; set; }
+        public string Name { get; set; }
+        public int? ServicioHeaderId { get; set; }
+
     }
 }

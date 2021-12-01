@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "I2t/wb3WgTH7eA8SeVYIcA7NGSsI4D2u4+GHwuiYszsV3FNQpr2WyaFuXQeravtLQmrqHwTsCzhk05eV8r4mKA==",
+  "dgSpecHash": "tKLNmcToVi7rxlUJbbCL4Bgb68df2AifiqfKkYnLP8UUFaXvplt9rabnsj0Nt8Aj2QgWwAz64wAOwv60D5NtjQ==",
   "success": true,
   "projectFilePath": "D:\\fastpay\\FastPayProyect\\Web\\Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.21\\microsoft.aspnetcore.cryptography.internal.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.21\\microsoft.aspnetcore.cryptography.keyderivation.3.1.21.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

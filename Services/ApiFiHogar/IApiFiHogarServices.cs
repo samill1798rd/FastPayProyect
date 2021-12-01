@@ -6,9 +6,9 @@ namespace Services.ApiFiHogar
 {
     public interface IApiFiHogarServices
     {
-        void GetSecondToken(string username, string password);
+        Task GetSecondToken(string username, string password);
         Task<AccountInformation> GetAccountInformation();
         Task<Transaction> GetAccountTransationsDetail(string accountNumber);
-        Task<Header> CreateAccountTransfer(string currentAccount);
+        Task<Header> CreateAccountTransfer(string currentAccount, string monto);
     }
 }

@@ -45,6 +45,7 @@
                 <!-- Collapse -->
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                     <!-- Nav items -->
+                    <h1 id="balance"></h1>
                     <ul class="navbar-nav">
                         @if (@Currentuser.Result.RolId == null)
                         {
@@ -67,7 +68,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="tables.html">
+                                        <a class="nav-link" href="@Url.Action("HistorialTransaciones","PagosServicios")">
                                             <i class="ni ni-bullet-list-67 text-default"></i>
                                             <span class="nav-link-text">Historial de Pago</span>
                                         </a>

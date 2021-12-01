@@ -13,12 +13,13 @@ namespace Services.ApiFiHogar
         private string SecondToken;
         //private string CurrentAccount;
         protected const string defaultToken = "dzBMbkVNOUpYeWhNYmlBMEg4Nk9lM3FwVjVzYTpyRlRqanFUdkxOY25ZbTltSndHX0FNbVp6b2dh";
+        protected const string url = "https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/";
 
         public ApiFiHogarServices()
         {
             GetFirstToken();
         }
-        public void GetFirstToken()
+        public async Task GetFirstToken()
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/token");
             client.Timeout = -1;
@@ -33,7 +34,7 @@ namespace Services.ApiFiHogar
             FirstToken = JsonConvert.DeserializeObject<TokenModel>(response.Content).access_token;
         }
 
-        public void GetSecondToken(string username, string password)
+        public async Task GetSecondToken(string username, string password)
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/authorize/2.0/token?provider=AB4WRD");
             client.Timeout = -1;
@@ -51,7 +52,7 @@ namespace Services.ApiFiHogar
 
         public async Task<AccountInformation> GetAccountInformation()
         {
-            var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/?provider=AB4WRD");
+            var client = new RestClient($"{url}?provider=AB4WRD");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             request.AddHeader("token-id", $"{SecondToken}");
@@ -65,7 +66,7 @@ namespace Services.ApiFiHogar
         public async Task<Transaction> GetAccountTransationsDetail(string accountNumber)
         {
 
-            var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/86376489/transactions?provider=AB4WRD");
+            var client = new RestClient($"{url}{accountNumber}/transactions?provider=AB4WRD");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             request.AddHeader("token-id", $"{SecondToken}");
@@ -76,7 +77,7 @@ namespace Services.ApiFiHogar
             return JsonConvert.DeserializeObject<Transaction>(response.Content);
         }
 
-        public async Task<Header> CreateAccountTransfer(string currentAccount)
+        public async Task<Header> CreateAccountTransfer(string currentAccount, string monto)
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-transfers/api/2.0/transfers?provider=AB4WRD");
             client.Timeout = -1;
@@ -84,7 +85,7 @@ namespace Services.ApiFiHogar
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Authorization", $"Bearer {FirstToken}");
             request.AddHeader("token-id", $"{SecondToken}");
-            var body = GetBodyPart(currentAccount,"500");
+            var body = GetBodyPart(currentAccount, monto);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 

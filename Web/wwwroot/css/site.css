@@ -167,3 +167,9 @@ body {
             text-transform: capitalize;
 
     }
+
+.formatBox{
+    cursor:pointer;
+    margin-left:20px;
+    margin-right:20px;
+}

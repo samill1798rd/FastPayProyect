@@ -1,7 +1,3 @@
-D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.csprojAssemblyReference.cache
-D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.AssemblyInfoInputs.cache
-D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.AssemblyInfo.cs
-D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.csproj.CoreCompileInputs.cache
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Services.deps.json
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Services.dll
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Services.pdb
@@ -10,8 +6,11 @@ D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\DataAccess.dll
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Model.dll
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Common.pdb
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\DataAccess.pdb
-D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\DataAccess.dll.config
 D:\fastpay\FastPayProyect\Services\bin\Debug\netstandard2.0\Model.pdb
+D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.csprojAssemblyReference.cache
+D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.AssemblyInfoInputs.cache
+D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.AssemblyInfo.cs
+D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.csproj.CoreCompileInputs.cache
 D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.csproj.CopyComplete
 D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.dll
 D:\fastpay\FastPayProyect\Services\obj\Debug\netstandard2.0\Services.pdb

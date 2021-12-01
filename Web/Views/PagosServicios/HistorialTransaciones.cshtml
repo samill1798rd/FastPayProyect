@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Web.ViewModel.TransationDto>
+
+@{
+    ViewData["Title"] = "Pagar";
+    ViewData["Modulo"] = "Pagos de Servicios";
+    ViewData["IdRol"] = "1";
+}
+
+
+<div class="card">
+    <div class="card-header border-0">
+        <h2 class="card-title">Hola</h2>
+    </div>
+
+    <div class="card-body">
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre del provedor</th>
+                        <th>Pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.Amount.amount</th>
+                            <th>
+                                <a href="@Url.Action("CreatePago","PagosServicios", new { id = @item.AccountId })" id="btnPagar" class="btn btn-success" alt="Pagar"><i class="far fa-money-bill-alt"></i></a>
+                            </th>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="card-footer py-4">
+
+        <a href="@Url.Action("Index","PagosServicios")" class="btn btn-danger float-right">Atras</a>
+        @*<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>*@
+    </div>
+</div>
+
+
+
+
+
+
+
+@section scripts
+        {
+
+    <script src="~/js/pagoServicioIndex.js"></script>
+
+    <script>
+        let GetServicosById = '@Url.Action("GetServicoById", "PagosServicios")';
+    </script>
+
+}

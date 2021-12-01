@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Model.FastPayModel;
 using Services.ApiFiHogar;
+using Services.PayFastLogic;
+using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Web.ViewModel;
 
 namespace Web.Controllers
@@ -15,66 +18,125 @@ namespace Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IApiFiHogarServices _ApiFiHogarServices;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IProcesoLocalServices _procesoLocalServices;
+        private readonly IMapper _mapper;
+
         private string CurrentAccount;
-        public PagosServiciosController(ILogger<HomeController> logger, IApiFiHogarServices apiFiHogarServices, IHttpContextAccessor httpContextAccessor)
+        private string Correo;
+        private AspNetUsers UserObj;
+        public PagosServiciosController(
+            ILogger<HomeController> logger,
+            IApiFiHogarServices apiFiHogarServices,
+            IHttpContextAccessor httpContextAccessor,
+            IProcesoLocalServices procesoLocalServices,
+            IMapper mapper
+            )
         {
             _logger = logger;
             _ApiFiHogarServices = apiFiHogarServices;
             _httpContextAccessor = httpContextAccessor;
+            _procesoLocalServices = procesoLocalServices;
+            _mapper = mapper;
 
-            var user = _httpContextAccessor.HttpContext.User.Identity.Name;
-
-            SetCurrentAccount();
-
-            _ApiFiHogarServices.GetSecondToken("matilde_1", "matilde_1");
+            Correo = _httpContextAccessor.HttpContext.User.Identity.Name;
         }
         public IActionResult Index()
         {
-            
-
-
-            var test1 = _ApiFiHogarServices.GetAccountTransationsDetail("0000");
-            _ApiFiHogarServices.CreateAccountTransfer(CurrentAccount);
-
-
             return View();
         }
 
         public IActionResult CreatePago(int id)
         {
-            var datosVm = new ServicosDto { Id = 1, Cuenta = "00000", IsActive = true, Nombre = "Pago Luz 1", ServicoGrupoId = 1 };
+            var dbObj = _procesoLocalServices.GetServicioById(id);
+
+            var datosVm = _mapper.Map<PagoServicoDto>(dbObj);
+
+            datosVm.Monto = GetRandomNumber();
 
             return View(datosVm);
         }
 
 
         [HttpPost]
-        public IActionResult SavePago(ServicosDto dto)
+        public IActionResult SavePago(PagoServicoDto dto)
         {
-            return null;
+            IniciarlizarOperacionesApi();
+
+            var obj =_ApiFiHogarServices.CreateAccountTransfer(CurrentAccount,dto.Monto);
+
+            var model = _mapper.Map<TblHistoricoTrasaciones>(dto);
+
+
+            return RedirectToAction("Success", dto);
+        }
+
+      
+        public IActionResult Success(PagoServicoDto dto)
+        {
+        
+            return View(dto);
+        }
+
+
+        public IActionResult HistorialTransaciones()
+        {
+            IniciarlizarOperacionesApi();
+
+            var obj = _ApiFiHogarServices.GetAccountTransationsDetail(CurrentAccount);
+
+            var objTransation = obj.Result.Data.Transaction;
+
+            var model = _mapper.Map<IEnumerable<TransationDto>>(objTransation);
+
+            return View(model);
+        }
+
+
+        private TblHistoricoTrasaciones SetOperactionBussiness(TblHistoricoTrasaciones model, PagoServicoDto dto)
+        {
+            model.PorcientoPagina = "3%";
+            model.CedulaUser = UserObj.Cedula;
+            model.Total = model.Monto;
+            model.ServicioListId = dto.IdServicioList;
+
+            return model;
         }
 
         [AllowAnonymous]
         public PartialViewResult GetServicoById(int id)
         {
-            var datosVm = GetServicios();
+            var dbObj = _procesoLocalServices.GetServicioListByModuloId(id);
+
+            var datosVm = _mapper.Map<IEnumerable<ServicosDto>>(dbObj);
+
 
             return PartialView("_ListServicos", datosVm);
         }
 
-        private List<ServicosDto> GetServicios()
+        [AllowAnonymous]
+        public JsonResult GetBalance()
         {
-            var datosVm = new List<ServicosDto>();
+            IniciarlizarOperacionesApi();
 
-            datosVm.Add(new ServicosDto { Id = 1, Cuenta = "00000", IsActive = true, Nombre = "Pago Luz 1", ServicoGrupoId = 1 });
-            datosVm.Add(new ServicosDto { Id = 1, Cuenta = "00000", IsActive = true, Nombre = "Pago Luz 1", ServicoGrupoId = 1 });
-            datosVm.Add(new ServicosDto { Id = 1, Cuenta = "00000", IsActive = true, Nombre = "Test 1", ServicoGrupoId = 1 });
-            datosVm.Add(new ServicosDto { Id = 2, Cuenta = "00000", IsActive = true, Nombre = "Test 2", ServicoGrupoId = 2 });
-            datosVm.Add(new ServicosDto { Id = 3, Cuenta = "00000", IsActive = true, Nombre = "Test 3", ServicoGrupoId = 3 });
-            datosVm.Add(new ServicosDto { Id = 4, Cuenta = "00000", IsActive = true, Nombre = "Test 4", ServicoGrupoId = 4 });
-            datosVm.Add(new ServicosDto { Id = 5, Cuenta = "00000", IsActive = true, Nombre = "Test 5", ServicoGrupoId = 5 });
+            var obj = _ApiFiHogarServices.GetAccountInformation();
 
-            return datosVm;
+            var balance = obj.Result.Data.Account[0].Balance[0].Amount.amount.ToString();
+
+            return Json(balance);
+        }
+
+
+        private string  GetRandomNumber()
+        {
+            return new Random().Next(500, 1000).ToString();
+        }
+
+
+        private void IniciarlizarOperacionesApi()
+        {
+            GetUserToLogginInAccountApi();
+            SetCurrentAccount();
+            
         }
 
         private void SetCurrentAccount()
@@ -82,7 +144,11 @@ namespace Web.Controllers
             var accountObj = _ApiFiHogarServices.GetAccountInformation();
             CurrentAccount = accountObj.Result.Data.Account[0].account[0].Identification;
         }
+
+        private void GetUserToLogginInAccountApi()
+        {
+             UserObj = _procesoLocalServices.GetUserByCorreo(Correo);
+            _ApiFiHogarServices.GetSecondToken(UserObj.NoCuenta, UserObj.NoCuenta);
+        }
     }
-
-
 }
