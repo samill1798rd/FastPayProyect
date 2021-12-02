@@ -96,7 +96,16 @@ namespace Web.Controllers
 
             return View(SetMappingTransaciones(obj));
         }
-        
+
+        public IActionResult HistorialCuentaPrincipal()
+        {
+            var obj = _procesoLocalServices.GetTransationAll();
+
+            return View(SetMappingTransaciones(obj));
+        }
+
+
+
         private List<TransationDto> SetMappingTransaciones(IEnumerable<Trasaciones> model)
         {
             
@@ -165,7 +174,7 @@ namespace Web.Controllers
         private void GetUserToLogginInAccountApi()
         {
             UserObj = _procesoLocalServices.GetUserByCorreo(Correo);
-            _ApiFiHogarServices.GetSecondToken(UserObj.NoCuenta, UserObj.NoCuenta);
+            _ApiFiHogarServices.GetSecondToken(UserObj.NoCuenta.Trim(), UserObj.NoCuenta.Trim());
         }
     }
 }

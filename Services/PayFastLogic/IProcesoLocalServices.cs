@@ -11,6 +11,7 @@ namespace Services.PayFastLogic
         TblServicioList GetServicioById(int? id);
         OperationResult<Trasaciones> SaveTransaciones(Trasaciones Trasaciones);
         IEnumerable<Trasaciones> GetTransationByCorreo(string correo);
+        IEnumerable<Trasaciones> GetTransationAll();
 
     }
 }

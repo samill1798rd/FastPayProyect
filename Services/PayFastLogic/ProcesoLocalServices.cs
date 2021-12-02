@@ -34,6 +34,11 @@ namespace Services.PayFastLogic
             return _DBContext.Trasaciones.Where(x => x.Correo == correo).ToList();
         }
 
+        public IEnumerable<Trasaciones> GetTransationAll()
+        {
+            return _DBContext.Trasaciones.ToList();
+        }
+
         public TblServicioList GetServicioById(int? id)
         {
             return _DBContext.TblServicioList.Include(x => x.ServicioHeader)

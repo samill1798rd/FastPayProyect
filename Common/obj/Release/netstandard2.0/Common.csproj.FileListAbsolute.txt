@@ -1,0 +1,8 @@
+D:\fastpay\FastPayProyect\Common\bin\Release\netstandard2.0\Common.deps.json
+D:\fastpay\FastPayProyect\Common\bin\Release\netstandard2.0\Common.dll
+D:\fastpay\FastPayProyect\Common\bin\Release\netstandard2.0\Common.pdb
+D:\fastpay\FastPayProyect\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+D:\fastpay\FastPayProyect\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+D:\fastpay\FastPayProyect\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+D:\fastpay\FastPayProyect\Common\obj\Release\netstandard2.0\Common.dll
+D:\fastpay\FastPayProyect\Common\obj\Release\netstandard2.0\Common.pdb

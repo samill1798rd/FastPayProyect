@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Web.ViewModel.TransationDto>
+
+@{
+    ViewData["Title"] = "Pagar";
+    ViewData["Modulo"] = "Pagos de Servicios";
+    ViewData["IdRol"] = "1";
+}
+
+
+<div class="card">
+    <div class="card-header border-0">
+        <h2 class="card-title">Historial de Pagos Generales</h2>
+    </div>
+
+    <div class="card-body">
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Tipo de Servicio</th>
+                        <th>Monto</th>
+                        <th>No. Servicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.ServicioName</th>
+                            <th>@item.ServicioTipo</th>
+                            <th>$@item.Monto</th>
+                            <th>@item.ReferenciaPago</th>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="card-footer py-4">
+
+        <a href="@Url.Action("Index","PagosServicios")" class="btn btn-danger float-right">Atras</a>
+        @*<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>*@
+    </div>
+</div>
+
+
+
+
+@section scripts
+        {
+
+    <script src="~/js/pagoServicioIndex.js"></script>
+
+    <script>
+        let GetServicosById = '@Url.Action("GetServicoById", "PagosServicios")';
+    </script>
+
+}
