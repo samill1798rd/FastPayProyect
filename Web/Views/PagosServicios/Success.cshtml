@@ -1,7 +1,7 @@
 ﻿@model Web.ViewModel.PagoServicoDto
 
 @{
-    ViewData["Title"] = "Pagar" + Model.Name;
+    ViewData["Title"] = "Mensaje";
     ViewData["Modulo"] = "Pagos de Servicios";
     ViewData["IdRol"] = "1";
 }
@@ -18,16 +18,9 @@
     </div>
 
     <div class="card-footer py-4">
-
         <a href="@Url.Action("Index","PagosServicios")" class="btn btn-danger float-right">Atras</a>
-        @*<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>*@
     </div>
 </div>
-
-
-
-
-
 
 
 @section scripts
