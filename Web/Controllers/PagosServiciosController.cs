@@ -119,6 +119,7 @@ namespace Web.Controllers
                 transaction.ServicioTipo = servicioObj.ServicioHeader.Name;
                 transaction.Monto = item.Monto;
                 transaction.ReferenciaPago = item.ReferenciaPago;
+                transaction.Correo = item.Correo;
 
                 listTransactionDto.Add(transaction);
             }
