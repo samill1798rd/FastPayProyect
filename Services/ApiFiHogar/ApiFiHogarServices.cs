@@ -11,14 +11,17 @@ namespace Services.ApiFiHogar
     {
         private string FirstToken;
         private string SecondToken;
-        //private string CurrentAccount;
         protected const string defaultToken = "dzBMbkVNOUpYeWhNYmlBMEg4Nk9lM3FwVjVzYTpyRlRqanFUdkxOY25ZbTltSndHX0FNbVp6b2dh";
         protected const string url = "https://api.uat.4wrd.tech:8243/manage-accounts/api/2.0/accounts/";
 
+        //metodo constructor 
         public ApiFiHogarServices()
         {
+            //genera automaticamente el primer token
             GetFirstToken();
         }
+
+        //genera el primer token
         public async Task GetFirstToken()
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/token");
@@ -33,7 +36,7 @@ namespace Services.ApiFiHogar
 
             FirstToken = JsonConvert.DeserializeObject<TokenModel>(response.Content).access_token;
         }
-
+        //genera el segundo token
         public async Task GetSecondToken(string username, string password)
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/authorize/2.0/token?provider=AB4WRD");
@@ -49,7 +52,7 @@ namespace Services.ApiFiHogar
             SecondToken = JsonConvert.DeserializeObject<SecondAccessToken>(response.Content).access_token;
         }
 
-
+        //obtiene la informacion de la cuenta actual
         public async Task<AccountInformation> GetAccountInformation()
         {
             var client = new RestClient($"{url}?provider=AB4WRD");
@@ -62,7 +65,7 @@ namespace Services.ApiFiHogar
 
             return JsonConvert.DeserializeObject<AccountInformation>(response.Content);
         }
-
+        //obtiene las transaciones de la cuenta actual
         public async Task<Transaction> GetAccountTransationsDetail(string accountNumber)
         {
 
@@ -76,7 +79,7 @@ namespace Services.ApiFiHogar
           
             return JsonConvert.DeserializeObject<Transaction>(response.Content);
         }
-
+        //crea transacione de la cuenta actual a otra cuenta
         public async Task<object> CreateAccountTransfer(string currentAccount, string monto)
         {
             var client = new RestClient("https://api.uat.4wrd.tech:8243/manage-transfers/api/2.0/transfers?provider=AB4WRD");
@@ -92,6 +95,7 @@ namespace Services.ApiFiHogar
             return JsonConvert.DeserializeObject<object>(response.Content);
         }
 
+        //es un componente de CreateAccountTransfer el cual crea el contenido json
         public string GetBodyPart(string currentAccount, string monto)
         {
             return @"{" + "\n" +

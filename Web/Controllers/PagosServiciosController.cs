@@ -45,6 +45,7 @@ namespace Web.Controllers
             return View();
         }
 
+        //presenta la vista en el cual se crean los pagos
         public IActionResult CreatePago(int id)
         {
             var dbObj = _procesoLocalServices.GetServicioById(id);
@@ -56,7 +57,7 @@ namespace Web.Controllers
             return View(datosVm);
         }
 
-
+        //presenta la vista en la cuals se generan y guardan los pagos
         [HttpPost]
         public IActionResult SavePago(PagoServicoDto dto)
         {
@@ -82,21 +83,21 @@ namespace Web.Controllers
             return model;
         }
 
-
+        //presenta la vista donde muestra un mensaje de operacion terminada
         public IActionResult Success(PagoServicoDto dto)
         {
 
             return View(dto);
         }
 
-
+        //presenta la vista donde muestra el historial de transaciones de un usario
         public IActionResult HistorialTransaciones()
         {
             var obj = _procesoLocalServices.GetTransationByCorreo(Correo); 
 
             return View(SetMappingTransaciones(obj));
         }
-
+        //presenta la vista donde muestra el historial de transaciones de todos los usuarios
         public IActionResult HistorialCuentaPrincipal()
         {
             var obj = _procesoLocalServices.GetTransationAll();
@@ -128,7 +129,7 @@ namespace Web.Controllers
         }
 
 
-
+        //presenta la vista donde se obtiene un servico por id
         [AllowAnonymous]
         public PartialViewResult GetServicoById(int id)
         {
@@ -139,7 +140,7 @@ namespace Web.Controllers
 
             return PartialView("_ListServicos", datosVm);
         }
-
+        //muestra el balance en tiempo real
         [AllowAnonymous]
         public JsonResult GetBalance()
         {
@@ -152,7 +153,7 @@ namespace Web.Controllers
             return Json(balance);
         }
 
-
+        //genera el monto ramdom
         private string GetRandomNumber()
         {
             return new Random().Next(500, 1000).ToString();
