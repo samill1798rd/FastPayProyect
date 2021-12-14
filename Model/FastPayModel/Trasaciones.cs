@@ -15,5 +15,6 @@ namespace Model.FastPayModel
         public int? ServicioName { get; set; }
         public string Correo { get; set; }
         public string ReferenciaPago { get; set; }
+        public DateTime? Fecha { get; set; }
     }
 }

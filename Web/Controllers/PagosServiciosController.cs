@@ -121,6 +121,7 @@ namespace Web.Controllers
                 transaction.Monto = item.Monto;
                 transaction.ReferenciaPago = item.ReferenciaPago;
                 transaction.Correo = item.Correo;
+                transaction.Fecha = item.Fecha;
 
                 listTransactionDto.Add(transaction);
             }
