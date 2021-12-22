@@ -1,4 +1,6 @@
-﻿namespace Web.ViewModel
+﻿using System;
+
+namespace Web.ViewModel
 {
     public class TransationDto
     {
@@ -8,6 +10,7 @@
         public string? ServicioName { get; set; }
         public string Correo { get; set; }
         public string ReferenciaPago { get; set; }
+        public DateTime? FechaCreacion { get; set; }
 
     }
 }

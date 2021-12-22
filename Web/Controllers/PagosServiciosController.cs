@@ -66,6 +66,7 @@ namespace Web.Controllers
             var obj = _ApiFiHogarServices.CreateAccountTransfer(CurrentAccount, dto.Monto);
 
             var model = _mapper.Map<Trasaciones>(dto);
+            model.FechaCreacion = DateTime.Now;
 
             _procesoLocalServices.SaveTransaciones(SetOperactionBussiness(model,dto));
 
@@ -121,6 +122,7 @@ namespace Web.Controllers
                 transaction.Monto = item.Monto;
                 transaction.ReferenciaPago = item.ReferenciaPago;
                 transaction.Correo = item.Correo;
+                transaction.FechaCreacion = item.FechaCreacion;
 
                 listTransactionDto.Add(transaction);
             }

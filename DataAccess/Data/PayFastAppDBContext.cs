@@ -263,6 +263,8 @@ namespace DataAccess.Data
 
                 entity.Property(e => e.IdHistoricoTransaciones).HasColumnName("Id_HistoricoTransaciones");
 
+                entity.Property(e => e.FechaCreacion).HasColumnName("FechaCreacion");
+
                 entity.Property(e => e.Correo)
                     .HasColumnName("correo")
                     .HasMaxLength(50)
